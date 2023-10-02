@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>EMPLOYEE PORTAL</title>
+</head>
+<body>
+
+<div align="center">
+  <h1>EMPLOYEE PORTAL</h1>
+</div>
+<div align="center">
+  <form th:action="@{/addEmployee}" method="get">
+    <input type="submit" value="ADD EMPLOYEE" class="btn btn-success">
+  </form>
+</div>
+
+
+<div class="row">
+
+<div class="card border-primary " style="width: 20rem;" th:each="emp:${employeeData}">
+  <div class="card-header bg-transparent border-success">
+    <h3 class="text-warning">EMPLOYEE ID :<span th:text="${emp.empId}"></span></h3>
+  </div>
+
+  <img th:src="@{emp.jpg}" class="card-img-top" alt="...">
+  <div class="card-body" align="center">
+    <h6 class="card-title text-danger">EMPLOYEE INFORMATION</h6>
+    <h6>EMPLOYEE NAME :<span class="text-success" th:text="${emp.empName}"></span> </h6>
+    <h6>EMPLOYEE SALARY :<span class="text-success" th:text="${emp.empSal}"></span> </h6>
+    <h6>EMPLOYEE DESIGNATION :<span class="text-success" th:text="${emp.empDesg}"></span> </h6>
+    <div class="card-footer bg-transparent border-success">
+      <a th:href="@{/updateCurrentEmployee/{id}(id=${emp.empId})}" class="btn btn-primary">UPDATE</a>
+      <a th:href="@{/deleteCurrentEmployee/{id}(id=${emp.empId})}" class="btn btn-primary">DELETE</a>
+    </div>
+
+  </div>
+</div>
+</div>
+</body>
+</html>
